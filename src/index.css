@@ -18,32 +18,65 @@ h1 {
   font-size: 2.2rem;
 }
 
-.app {
+.app .start-quiz {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.start-quiz {
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   gap: 2rem;
 }
+.question-element {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 70px;
+  gap: 12px;
+}
+
+.multiple-choice {
+  display: flex;
+  gap: 15px;
+
+}
+
+.line {
+  background-color: #DBDEF0;
+  opacity: 50%;
+
+}
+
 
 button {
   font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.start-quiz > button {
+  background: #4D5B9E;
+  border-radius: 15px;
   width: 190px;
   height: 45px;
   left: 179px;
   top: 314px;
   color: white;
-  background: #4D5B9E;
-  border-radius: 15px;
   border: transparent;
-  cursor: pointer;
+}
+
+.question-text {
+  font-weight: 700;
+  color: #293264;
+  
+}
+
+.answer-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  text-align: center;
+  color: #293264;
+  border: 1px solid #4D5B9E;
+  background: #F5F7FB;
+  border-radius: 8px;
+  padding: 5px 15px;
 }
 

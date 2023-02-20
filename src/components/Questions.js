@@ -7,7 +7,8 @@ export default function Questions(props) {
 
     const multipleChoiceElements = props.multipleChoiceAnswersRandom.map(answer => {
         return(
-                <button>
+
+                <button className="answer-text">
                     {answer}
                 </button>
 
@@ -16,11 +17,14 @@ export default function Questions(props) {
 
     // console.log(multipleChoiceElements)
     return(
-        <div>
-            <div>
+        <div className="question-element">
+            <div className="question-text">
                 {props.question}
             </div>
-            {multipleChoiceElements}
+            <div className="multiple-choice">
+                {multipleChoiceElements}
+            </div>
+            <hr className="line"></hr>
         </div>
     )
 }
