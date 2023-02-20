@@ -18,6 +18,10 @@ h1 {
   font-size: 2.2rem;
 }
 
+.app {
+  margin: 0 100px;
+}
+
 .app .start-quiz {
   height: 100vh;
   display: flex;
@@ -29,7 +33,7 @@ h1 {
 .question-element {
   display: flex;
   flex-direction: column;
-  margin: 40px 70px;
+  margin: 40px 0;
   gap: 12px;
 }
 
@@ -51,7 +55,7 @@ button {
   cursor: pointer;
 }
 
-.start-quiz > button {
+.button1 {
   background: #4D5B9E;
   border-radius: 15px;
   width: 190px;

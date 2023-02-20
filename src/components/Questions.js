@@ -25,6 +25,7 @@ export default function Questions(props) {
                 {multipleChoiceElements}
             </div>
             <hr className="line"></hr>
+            
         </div>
     )
 }

@@ -71,15 +71,16 @@ export default function App() {
     
       <div>
         {questionElements}
+        <button className="button1">Check Answers</button>
       </div>
       : 
       <div className="start-quiz">
         <h1>Quizzical</h1>
-        <button onClick={startGame}>Start Quiz</button>
+        <button className="button1" onClick={startGame}>Start Quiz</button>
       </div>
       }
 
-
+      
 
     </div>
   );
