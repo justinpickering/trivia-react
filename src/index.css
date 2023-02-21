@@ -22,6 +22,7 @@ h1 {
   margin: 0 100px;
 }
 
+
 .app .start-quiz {
   height: 100vh;
   display: flex;
@@ -33,6 +34,7 @@ h1 {
 .question-element {
   display: flex;
   flex-direction: column;
+
   margin: 40px 0;
   gap: 12px;
 }
@@ -40,6 +42,7 @@ h1 {
 .multiple-choice {
   display: flex;
   gap: 15px;
+
 
 }
 
@@ -69,6 +72,7 @@ button {
 .question-text {
   font-weight: 700;
   color: #293264;
+  font-size: 1.3rem;
   
 }
 

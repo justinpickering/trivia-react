@@ -3,15 +3,14 @@ import App from "../App"
 
 export default function Questions(props) {
 
-    console.log(props)
 
-    const multipleChoiceElements = props.multipleChoiceAnswersRandom.map(answer => {
+
+    const multipleChoiceElements = props.multipleChoiceAnswersRandom.map((answer, index) => {
         return(
 
-                <button className="answer-text">
-                    {answer}
+                <button className="answer-text" onClick={()=>{props.holdAnswer(index)}}>
+                    {answer.answer}
                 </button>
-
         )
     })
 
