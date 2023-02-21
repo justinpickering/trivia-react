@@ -1,32 +1,36 @@
 import React from "react";
-import "./index.css"
-import Questions from "./components/Questions"
+import "./index.css";
+import Questions from "./components/Questions";
 
 export default function App() {
+  const [inGame, setInGame] = React.useState(false);
 
-  const [inGame, setInGame] = React.useState(false)
+  const [triviaQuestions, setTriviaQuestions] = React.useState([]);
 
-  const [triviaQuestions, setTriviaQuestions] = React.useState([])
+  const [triviaAnswersHeldState, setTriviaAnswersHeldState] =
+    React.useState([]);
 
   //useLayoutEffect instead of useEffect so it runs after the DOM mutations, and avoid double rendering
   React.useLayoutEffect(() => {
-  
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
-      .then(res => res.json())
-      .then(data => setTriviaQuestions(data.results))
-  },[])
+      .then((res) => res.json())
+      .then((data) => setTriviaQuestions(data.results));
+  }, []);
 
   // triviaQuestions.forEach(question => {
   //   console.log(question);
   // });
 
-  function startGame() {
-    setInGame(true)
-  }
+function startGame() {
+  setInGame(true);
+  const triviaAnswersHeld = test();
+  setTriviaAnswersHeldState(triviaAnswersHeld);
+  console.log(triviaAnswersHeld);
+}
 
   //to decode html from api
   const decodeHtml = (html) => {
-    const txt = document.createElement('textarea');
+    const txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
   };
@@ -48,42 +52,47 @@ export default function App() {
     return array;
   }
 
+function test() {
+  const tester = decodedQuestions.map((question, index) => {
+    const multipleChoiceAnswers = question.incorrect_answers;
+    multipleChoiceAnswers.push(question.correct_answer);
+    const multipleChoiceAnswersRandom = shuffleArray(
+      multipleChoiceAnswers.map((answer) => ({
+        answer,
+        isHeld: false,
+      }))
+    );
+    return multipleChoiceAnswersRandom;
+  });
+  return tester;
+}
+
   const questionElements = decodedQuestions.map((question, index) => {
-
-    const multipleChoiceAnswers = question.incorrect_answers
-    multipleChoiceAnswers.push(question.correct_answer)
-    const multipleChoiceAnswersRandom = shuffleArray(multipleChoiceAnswers)
-
     return (
       <Questions
         question={question.question}
-        multipleChoiceAnswersRandom={multipleChoiceAnswersRandom}
+        multipleChoiceAnswersRandom={triviaAnswersHeldState[index]}
         correct_answer={question.correct_answer}
         key={index}
       />
-    )
-  })
+    );
+  });
 
   return (
     <div className="app">
-      {inGame ? 
-      
-    
-      <div>
-        {questionElements}
-        <button className="button1">Check Answers</button>
-      </div>
-      : 
-      <div className="start-quiz">
-        <h1>Quizzical</h1>
-        <button className="button1" onClick={startGame}>Start Quiz</button>
-      </div>
-      }
-
-      
-
+      {inGame ? (
+        <div>
+          {questionElements}
+          <button className="button1">Check Answers</button>
+        </div>
+      ) : (
+        <div className="start-quiz">
+          <h1>Quizzical</h1>
+          <button className="button1" onClick={startGame}>
+            Start Quiz
+          </button>
+        </div>
+      )}
     </div>
   );
 }
-
-
