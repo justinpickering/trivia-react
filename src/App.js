@@ -80,33 +80,35 @@ export default function App() {
   function toggleAnswer(id, questionIndex) {
     //shuffle through the 4 answers from the specific question (use questionIndex here to specify exact question)
     // and to shuffle through only the answers from the question
-    const updatedArray = triviaAnswersHeldState[questionIndex].map((instance) => {
-      //if already clicked, don't let unclick
-      if (instance.id === id && instance.isHeld) {
-        return {
-          ...instance,
-          isHeld: true,
-        };
+    const updatedArray = triviaAnswersHeldState[questionIndex].map(
+      (instance) => {
+        //if already clicked, don't let unclick
+        if (instance.id === id && instance.isHeld) {
+          return {
+            ...instance,
+            isHeld: true,
+          };
+        }
+        //if not clicked yet, change isHeld value . Conditional rendering of class in Questions component solves the styles
+        if (instance.id === id) {
+          return {
+            ...instance,
+            isHeld: !instance.isHeld,
+          };
+        }
+        //makes so only 1 button per question can be 'isHeld === true'
+        if (instance.id !== id && instance.isHeld) {
+          return {
+            ...instance,
+            isHeld: false,
+          };
+        }
+        //returns the whole instance to the updatedArray variable, we will use this lower. To update state.
+        //updating state will let the user see the change since above we are just making a 'copy',
+        //not actually doing anything to state
+        return instance;
       }
-      //if not clicked yet, change isHeld value . Conditional rendering of class in Questions component solves the styles
-      if (instance.id === id) {
-        return {
-          ...instance,
-          isHeld: !instance.isHeld,
-        };
-      }
-      //makes so only 1 button per question can be 'isHeld === true'
-      if (instance.id !== id && instance.isHeld) {
-        return {
-          ...instance,
-          isHeld: false,
-        };
-      }
-      //returns the whole instance to the updatedArray variable, we will use this lower. To update state.
-      //updating state will let the user see the change since above we are just making a 'copy', 
-      //not actually doing anything to state
-      return instance;
-    });
+    );
 
     //Now, we update state. It shuffle through the 5 elements. It will only update the related element
     // at the specific index by comparing with question Index. The rest of the elements at other index
@@ -122,6 +124,7 @@ export default function App() {
     });
   }
 
+  //shuffles through the questions which will be used to render 5 instances of Questions component
   const questionElements = decodedQuestions.map((question, index) => {
     return (
       <Questions
@@ -143,6 +146,7 @@ export default function App() {
           <button className="button1">Check Answers</button>
         </div>
       ) : (
+        //if inGame is false, render start page
         <div className="start-quiz">
           <h1>Quizzical</h1>
           <button className="button1" onClick={startGame}>
