@@ -84,3 +84,8 @@ button {
   padding: 5px 15px;
 }
 
+.isHeldColor {
+  background-color: black;
+  color: red;
+}
+
