@@ -95,3 +95,7 @@ button {
   border: transparent;
 }
 
+.choice-not-chosen {
+  color: rgb(231, 23, 23);
+}
+

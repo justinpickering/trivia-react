@@ -15,6 +15,8 @@ export default function App() {
     []
   );
 
+  const [choiceNotChosenError, setChoiceNotChosenError] = React.useState(false)
+
   function startGame() {
     setInGame(true);
     const triviaAnswersHeld = getAnswers();
@@ -80,6 +82,7 @@ export default function App() {
   function toggleAnswer(id, questionIndex) {
     //shuffle through the 4 answers from the specific question (use questionIndex here to specify exact question)
     // and to shuffle through only the answers from the question
+    setChoiceNotChosenError(false)
     const updatedArray = triviaAnswersHeldState[questionIndex].map(
       (instance) => {
         //if already clicked, don't let unclick
@@ -124,6 +127,32 @@ export default function App() {
     });
   }
 
+  function checkAnswers() {
+
+    setChoiceNotChosenError(false);
+
+    // for (let i = 0; i < triviaAnswersHeldState.length; i++) {
+    //   if (triviaAnswersHeldState[i].every((answer) => !answer.isHeld)) {
+    //     console.log("All answers are false!");
+    //     setChoiceNotChosenError(true)
+    //     return;
+    //     // do something if all answers are false
+    //   }
+    // }
+    
+    triviaAnswersHeldState.forEach((answer, index) => {
+      if (answer.every((instance) => !instance.isHeld)) {
+        console.log("All answers are false!");
+        setChoiceNotChosenError(true);
+        return;
+      }
+    })
+    if (choiceNotChosenError === false) {
+      console.log(triviaAnswersHeldState)
+      const fart = "Fart"
+    }
+  }
+
   //shuffles through the questions which will be used to render 5 instances of Questions component
   const questionElements = decodedQuestions.map((question, index) => {
     return (
@@ -143,7 +172,18 @@ export default function App() {
       {inGame ? (
         <div>
           {questionElements}
-          <button className="button1">Check Answers</button>
+          <button className="button1" onClick={checkAnswers}>
+            Check Answers
+          </button>
+          {choiceNotChosenError ? (
+            <span>
+              <h3 className="choice-not-chosen">
+                Please select an answer for each question before checking answers
+              </h3>
+            </span>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         //if inGame is false, render start page
