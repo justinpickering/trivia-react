@@ -88,8 +88,10 @@ button {
   padding: 5px 15px;
 }
 
+
 .isHeldColor {
-  background-color: black;
-  color: red;
+  background-color: #D6DBF5;
+  color: #293264;
+  border: transparent;
 }
 
