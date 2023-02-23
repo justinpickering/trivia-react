@@ -13,7 +13,8 @@ export default function Questions(props) {
           console.log("yes");
           styles = {
             backgroundColor: "#94D7A2",
-            border: "transparent",
+              border: "transparent",
+            fontWeight: "bold"
           };
         } else if (
           answer.isHeld === true &&
