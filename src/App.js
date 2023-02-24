@@ -179,7 +179,7 @@ export default function App() {
   return (
     <div className="app">
       {inGame ? (
-        <div>
+        <div className="in-game">
           {questionElements}
           <div className="button-outlay">
             {checkAnswerState ? (
@@ -211,7 +211,7 @@ export default function App() {
       ) : (
         //if inGame is false, render start page
         <div className="start-quiz">
-          <h1>Quizzical, for Alessia</h1>
+          <h1>Quizzical: a game for Alessia, my love</h1>
           <button className="button1" onClick={startGame}>
             Start Quiz
           </button>

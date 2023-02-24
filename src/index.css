@@ -27,6 +27,7 @@ h1 {
 .app .start-quiz {
   height: 100vh;
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -35,14 +36,32 @@ h1 {
 .question-element {
   display: flex;
   flex-direction: column;
-
   margin: 40px 0;
-  gap: 12px;
+  gap: 18px;
 }
 
 .multiple-choice {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
+}
+
+@media screen and (max-width: 569px) {
+  .multiple-choice {
+    justify-content: center;
+    align-items: center;
+  }
+  .question-element {
+    text-align: center;
+  }
+
+  .button-outlay {
+    justify-content: center;
+  }
+
+  .button1 {
+    margin-bottom: 20px;
+  }
 }
 
 .line {
@@ -72,7 +91,7 @@ button {
   font-size: 1.3rem;
 }
 
-.answer-text {
+.answer-button-text {
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -92,15 +111,18 @@ button {
 
 .choice-not-chosen {
   color: rgb(231, 23, 23);
+  margin-bottom: 40px;
 }
 
 .results-text {
   color: black;
+  margin-bottom: 40px;
 }
 
 .button-outlay {
   display: flex;
+  text-align: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
 }

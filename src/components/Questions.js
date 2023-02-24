@@ -31,7 +31,7 @@ export default function Questions(props) {
 
       return (
         <button
-          className={`answer-text ${isHeldColor}`}
+          className={`answer-button-text ${isHeldColor}`}
           style={styles}
           onClick={() => props.toggleAnswer(answer.id, props.id)}
         >
