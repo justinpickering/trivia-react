@@ -181,30 +181,28 @@ export default function App() {
       {inGame ? (
         <div className="in-game">
           {questionElements}
+          {choiceNotChosenError ? (
+            <h3 className="choice-not-chosen">
+              Please select an answer for each question before checking answers
+            </h3>
+          ) : (
+            ""
+          )}
           <div className="button-outlay">
             {checkAnswerState ? (
               <div className="button-outlay">
-                <button className="button1" onClick={startGame}>
-                  New Game
-                </button>
                 <h3 className="results-text">
                   You scored {score}/{triviaQuestions.length} questions
                   correctly.
                 </h3>
+                <button className="button1" onClick={startGame}>
+                  New Game
+                </button>
               </div>
             ) : (
               <button className="button1" onClick={checkAnswers}>
                 Check Answers
               </button>
-            )}
-
-            {choiceNotChosenError ? (
-              <h3 className="choice-not-chosen">
-                Please select an answer for each question before checking
-                answers
-              </h3>
-            ) : (
-              ""
             )}
           </div>
         </div>
