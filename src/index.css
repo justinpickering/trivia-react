@@ -1,17 +1,19 @@
-
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 * {
   margin: 0;
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   font-size: 16px;
-  background-color: #F5F7FB;
+  background-color: #f5f7fb;
 }
 
 h1 {
@@ -21,7 +23,6 @@ h1 {
 .app {
   margin: 0 100px;
 }
-
 
 .app .start-quiz {
   height: 100vh;
@@ -42,16 +43,12 @@ h1 {
 .multiple-choice {
   display: flex;
   gap: 15px;
-
-
 }
 
 .line {
-  background-color: #DBDEF0;
+  background-color: #dbdef0;
   opacity: 50%;
-
 }
-
 
 button {
   font-size: 0.9rem;
@@ -59,7 +56,7 @@ button {
 }
 
 .button1 {
-  background: #4D5B9E;
+  background: #4d5b9e;
   border-radius: 15px;
   width: 190px;
   height: 45px;
@@ -73,24 +70,22 @@ button {
   font-weight: 700;
   color: #293264;
   font-size: 1.3rem;
-  
 }
 
 .answer-text {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 500;
   text-align: center;
   color: #293264;
-  border: 1px solid #4D5B9E;
-  background: #F5F7FB;
+  border: 1px solid #4d5b9e;
+  background: #f5f7fb;
   border-radius: 8px;
   padding: 5px 15px;
 }
 
-
 .isHeldColor {
-  background-color: #D6DBF5;
+  background-color: #d6dbf5;
   color: #293264;
   border: transparent;
 }
@@ -103,3 +98,9 @@ button {
   color: black;
 }
 
+.button-outlay {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}

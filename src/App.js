@@ -181,36 +181,37 @@ export default function App() {
       {inGame ? (
         <div>
           {questionElements}
-          {checkAnswerState ? (
-            <div>
-              <button className="button1" onClick={startGame}>
-                New Game
+          <div className="button-outlay">
+            {checkAnswerState ? (
+              <div className="button-outlay">
+                <button className="button1" onClick={startGame}>
+                  New Game
+                </button>
+                <h3 className="results-text">
+                  You scored {score}/{triviaQuestions.length} questions
+                  correctly.
+                </h3>
+              </div>
+            ) : (
+              <button className="button1" onClick={checkAnswers}>
+                Check Answers
               </button>
-              <h3 className="results-text">
-                You scored {score}/{triviaQuestions.length} questions correctly.
-              </h3>
-            </div>
-          ) : (
-            <button className="button1" onClick={checkAnswers}>
-              Check Answers
-            </button>
-          )}
+            )}
 
-          {choiceNotChosenError ? (
-            <span>
+            {choiceNotChosenError ? (
               <h3 className="choice-not-chosen">
                 Please select an answer for each question before checking
                 answers
               </h3>
-            </span>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       ) : (
         //if inGame is false, render start page
         <div className="start-quiz">
-          <h1>Quizzical</h1>
+          <h1>Quizzical, for Alessia</h1>
           <button className="button1" onClick={startGame}>
             Start Quiz
           </button>
