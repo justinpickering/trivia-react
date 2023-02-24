@@ -14,13 +14,15 @@ export default function App() {
   const [triviaAnswersHeldState, setTriviaAnswersHeldState] = React.useState(
     []
   );
-
   const [choiceNotChosenError, setChoiceNotChosenError] = React.useState(false);
 
   const [checkAnswerState, setCheckAnswerState] = React.useState(false);
 
+  const [score, setScore] = React.useState(0);
+
   function startGame() {
     setInGame(true);
+    setScore(0);
     const triviaAnswersHeld = getAnswers();
     setTriviaAnswersHeldState(triviaAnswersHeld);
     setCheckAnswerState(false);
@@ -145,6 +147,17 @@ export default function App() {
     }
 
     setCheckAnswerState(true);
+    triviaAnswersHeldState.forEach((answers, i) => {
+      answers.forEach((answer) => {
+        if (
+          answer.isHeld &&
+          answer.answer === decodedQuestions[i].correct_answer
+        ) {
+          console.log("yes");
+          setScore((prevScore) => prevScore + 1);
+        }
+      });
+    });
   }
 
   //shuffles through the questions which will be used to render 5 instances of Questions component
@@ -168,9 +181,21 @@ export default function App() {
       {inGame ? (
         <div>
           {questionElements}
-          <button className="button1" onClick={checkAnswers}>
-            Check Answers
-          </button>
+          {checkAnswerState ? (
+            <div>
+              <button className="button1" onClick={startGame}>
+                New Game
+              </button>
+              <h3 className="results-text">
+                You scored {score}/{triviaQuestions.length} questions correctly.
+              </h3>
+            </div>
+          ) : (
+            <button className="button1" onClick={checkAnswers}>
+              Check Answers
+            </button>
+          )}
+
           {choiceNotChosenError ? (
             <span>
               <h3 className="choice-not-chosen">

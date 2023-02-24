@@ -1,16 +1,13 @@
 import React from "react";
-import App from "../App";
 
 export default function Questions(props) {
   let styles = {};
-  console.log(props.multipleChoiceAnswersRandom);
   const multipleChoiceElements = props.multipleChoiceAnswersRandom.map(
     (answer) => {
       const isHeldColor = answer.isHeld ? "isHeldColor" : "";
 
       if (props.checkAnswerState) {
         if (props.correct_answer === answer.answer) {
-          console.log("yes");
           styles = {
             backgroundColor: "#94D7A2",
               border: "transparent",
@@ -26,7 +23,6 @@ export default function Questions(props) {
             color: "#293264",
           };
         } else {
-          console.log("no");
           styles = {
             color: "#4D5B9E",
           };
