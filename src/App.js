@@ -184,7 +184,9 @@ export default function App() {
   }
 
   function scrolltoTop() {
-    window.scrollTo(0, 0);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 100);
   }
 
   //shuffles through the questions which will be used to render 5 instances of Questions component
