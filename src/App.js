@@ -20,18 +20,22 @@ export default function App() {
 
   const [score, setScore] = React.useState(0);
 
+  const [takeFirstDecoded, setTakeFirstDecoded] = React.useState([]);
+
   function startGame() {
     setInGame(true);
     setScore(0);
     const triviaAnswersHeld = getAnswers();
     setTriviaAnswersHeldState(triviaAnswersHeld);
     setCheckAnswerState(false);
+    fetchQuestions();
   }
 
   //creates new array using the triviaQuestions (Decoded), with answers in random order
   // each with a isHeld value and unique id
   function getAnswers() {
     //shuffles through 5 questions (index = 5)
+    setTakeFirstDecoded(decodedQuestions);
     const answerArray = decodedQuestions.map((question) => {
       const multipleChoiceAnswers = question.incorrect_answers;
       multipleChoiceAnswers.push(question.correct_answer);
@@ -52,10 +56,14 @@ export default function App() {
 
   //api fetch to receive questions from database
   //useLayoutEffect instead of useEffect so it runs after the DOM mutations, and avoid double rendering
-  React.useLayoutEffect(() => {
+  function fetchQuestions() {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then((res) => res.json())
       .then((data) => setTriviaQuestions(data.results));
+  }
+
+  React.useEffect(() => {
+    fetchQuestions();
   }, []);
 
   //to decode html from api
@@ -147,11 +155,13 @@ export default function App() {
     }
 
     setCheckAnswerState(true);
+    console.log("wtf")
     triviaAnswersHeldState.forEach((answers, i) => {
       answers.forEach((answer) => {
+        console.log(answer)
         if (
           answer.isHeld &&
-          answer.answer === decodedQuestions[i].correct_answer
+          answer.answer === takeFirstDecoded[i].correct_answer
         ) {
           console.log("yes");
           setScore((prevScore) => prevScore + 1);
@@ -161,7 +171,7 @@ export default function App() {
   }
 
   //shuffles through the questions which will be used to render 5 instances of Questions component
-  const questionElements = decodedQuestions.map((question, index) => {
+  const questionElements = takeFirstDecoded.map((question, index) => {
     return (
       <Questions
         question={question.question}
