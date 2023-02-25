@@ -68,11 +68,11 @@ export default function App() {
   }, []);
 
   React.useEffect(() => {
-    scrolltoBottom();
+    scrolltoTop();
   }, []);
 
   React.useEffect(() => {
-    scrolltoTop();
+    scrolltoBottom();
   }, []);
 
   //to decode html from api
@@ -239,6 +239,7 @@ export default function App() {
         //if inGame is false, render start page
         <div className="start-quiz">
           <h1>Quizzical: a game for Alessia</h1>
+          {scrolltoTop}
           <button className="button1" onClick={startGame}>
             Start Quiz
           </button>
