@@ -67,13 +67,6 @@ export default function App() {
     fetchQuestions();
   }, []);
 
-  React.useEffect(() => {
-    scrolltoTop();
-  }, []);
-
-  React.useEffect(() => {
-    scrolltoBottom();
-  }, []);
 
   //to decode html from api
   const decodeHtml = (html) => {
@@ -174,16 +167,19 @@ export default function App() {
         }
       });
     });
+
     scrolltoBottom();
   }
 
   function scrolltoBottom() {
+        console.log("FArt");
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);
   }
 
   function scrolltoTop() {
+        console.log("FArdddt");
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
