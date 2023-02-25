@@ -23,6 +23,7 @@ export default function App() {
   const [takeFirstDecoded, setTakeFirstDecoded] = React.useState([]);
 
   function startGame() {
+    window.scrollTo(0, 0);
     setInGame(true);
     setScore(0);
     const triviaAnswersHeld = getAnswers();
