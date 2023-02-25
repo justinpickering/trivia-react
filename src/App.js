@@ -23,7 +23,7 @@ export default function App() {
   const [takeFirstDecoded, setTakeFirstDecoded] = React.useState([]);
 
   function startGame() {
-    window.scrollTo(0, 0);
+    scrolltoTop();
     setInGame(true);
     setScore(0);
     const triviaAnswersHeld = getAnswers();
@@ -65,6 +65,14 @@ export default function App() {
 
   React.useEffect(() => {
     fetchQuestions();
+  }, []);
+
+  React.useEffect(() => {
+    scrolltoBottom();
+  }, []);
+
+  React.useEffect(() => {
+    scrolltoTop();
   }, []);
 
   //to decode html from api
@@ -173,6 +181,10 @@ export default function App() {
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);
+  }
+
+  function scrolltoTop() {
+    window.scrollTo(0, 0);
   }
 
   //shuffles through the questions which will be used to render 5 instances of Questions component
