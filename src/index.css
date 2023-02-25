@@ -129,3 +129,8 @@ button {
   gap: 10px;
   flex-wrap: wrap;
 }
+
+.something-went-wrong {
+  color: rgb(231, 23, 23);
+  margin: 20px 0;
+}

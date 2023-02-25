@@ -67,7 +67,6 @@ export default function App() {
     fetchQuestions();
   }, []);
 
-
   //to decode html from api
   const decodeHtml = (html) => {
     const txt = document.createElement("textarea");
@@ -172,14 +171,12 @@ export default function App() {
   }
 
   function scrolltoBottom() {
-        console.log("FArt");
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);
   }
 
   function scrolltoTop() {
-        console.log("FArdddt");
     setTimeout(() => {
       window.scrollTo(0, 0);
     }, 100);
@@ -200,12 +197,18 @@ export default function App() {
       />
     );
   });
+  console.log(questionElements);
 
   return (
     <div className="app">
       {inGame ? (
         <div className="in-game">
           {questionElements}
+          {questionElements.length === 0 ? (
+            <p className="something-went-wrong">
+              Looks like something went wrong. Please refresh your browser.
+            </p>
+          ) : null}
           {choiceNotChosenError ? (
             <h3 className="choice-not-chosen">
               Please select an answer for each question before checking answers
