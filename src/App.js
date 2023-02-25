@@ -145,7 +145,7 @@ export default function App() {
 
   function checkAnswers() {
     setChoiceNotChosenError(false);
-
+    scrolltoBottom();
     for (let i = 0; i < triviaAnswersHeldState.length; i++) {
       if (triviaAnswersHeldState[i].every((answer) => !answer.isHeld)) {
         console.log("All answers are false!");
@@ -156,19 +156,23 @@ export default function App() {
     }
 
     setCheckAnswerState(true);
-    console.log("wtf")
     triviaAnswersHeldState.forEach((answers, i) => {
       answers.forEach((answer) => {
-        console.log(answer)
         if (
           answer.isHeld &&
           answer.answer === takeFirstDecoded[i].correct_answer
         ) {
-          console.log("yes");
           setScore((prevScore) => prevScore + 1);
         }
       });
     });
+    scrolltoBottom();
+  }
+
+  function scrolltoBottom() {
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 100);
   }
 
   //shuffles through the questions which will be used to render 5 instances of Questions component

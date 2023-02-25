@@ -14,6 +14,7 @@ body {
   height: 100%;
   font-size: 18px;
   background-color: #f5f7fb;
+  scroll-behavior: smooth;
 }
 
 h1 {
