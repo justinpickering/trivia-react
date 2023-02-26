@@ -58,7 +58,7 @@ export default function App() {
   //api fetch to receive questions from database
   //useLayoutEffect instead of useEffect so it runs after the DOM mutations, and avoid double rendering
   function fetchQuestions() {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
+    fetch("https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple")
       .then((res) => res.json())
       .then((data) => setTriviaQuestions(data.results));
   }
